@@ -2,3 +2,4 @@ flask
 gunicorn
 pyjwt
 werkzeug
+requests
