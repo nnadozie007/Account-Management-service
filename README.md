@@ -6,7 +6,7 @@ The Account Management Service provides REST API functionality to register a new
 
 ## Base URLs
 Local: http://localhost:5001  
-Deployed: https://account-management-service-a11d.onrender.com  
+Deployed: https://account-management-service-1.onrender.com 
 All endpoints are relative to the Base URL.
 
 ## Response Format (All Endpoints)
@@ -22,7 +22,7 @@ Error:
 ## Endpoints
 ### Register
 POST /register  
-Example: POST https://account-management-service-a11d.onrender.com/register  
+Example: POST https://account-management-service-1.onrender.com/register  
 Header: Content-Type: application/json  
 Body:
 ```json
@@ -31,7 +31,7 @@ Body:
 
 ### Login
 POST /login  
-Example: POST https://account-management-service-a11d.onrender.com/login  
+Example: POST https://account-management-service-1.onrender.com/login  
 Body:
 ```json
 { "email": "user@example.com", "password": "Password123" }
@@ -43,12 +43,12 @@ Success:
 
 ### View Profile (Authenticated)
 GET /profile  
-Example: GET https://account-management-service-a11d.onrender.com/profile  
+Example: GET https://account-management-service-1.onrender.com/profile  
 Header: Authorization: Bearer <token>
 
 ### Update Profile (Authenticated)
 PATCH /profile  
-Example: PATCH https://account-management-service-a11d.onrender.com/profile  
+Example: PATCH https://account-management-service-1.onrender.com/profile  
 Headers: Authorization: Bearer <token>, Content-Type: application/json  
 Body (partial updates allowed):
 ```json
