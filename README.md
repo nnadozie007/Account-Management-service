@@ -65,4 +65,4 @@ INVALID_EMAIL_FORMAT, EMAIL_EXISTS, WEAK_PASSWORD, INVALID_DOB, INVALID_ADDRESS,
 This contract (endpoints, request structure, headers, response format, and error codes) must not change during the sprint without team agreement.
 
 ## UML
-![](C:\Users\tatty\Downloads\UML.jpeg)
+![UML.jpeg](..%2F..%2FDownloads%2FUML.jpeg)
