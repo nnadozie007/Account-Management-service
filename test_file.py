@@ -8,7 +8,7 @@ import json
 import time
 
 TIMEOUT_SEC = 20
-
+DELAY_BETWEEN_CALLS = 5
 
 def pretty(obj):
     return json.dumps(obj, indent=2)
@@ -57,6 +57,7 @@ def main():
     status, data = call("GET", "/health")
     print("HTTP:", status)
     print(pretty(data))
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     # 2) Register
     print("\n[2] REGISTER: POST /register")
@@ -69,6 +70,7 @@ def main():
     })
     print("HTTP:", status)
     print(pretty(data))
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     # 3) Duplicate register (should fail with EMAIL_EXISTS)
     print("\n[3] DUPLICATE REGISTER (expect error): POST /register again")
@@ -81,6 +83,7 @@ def main():
     })
     print("HTTP:", status)
     print(pretty(data))
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     # 4) Login success
     print("\n[4] LOGIN (expect ok): POST /login")
@@ -98,6 +101,7 @@ def main():
     if not token:
         print("\nSTOP: Could not obtain token. Cannot test authenticated endpoints.")
         return
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     # 5) Login with wrong password (should fail)
     print("\n[5] LOGIN WRONG PASSWORD (expect error): POST /login")
@@ -107,12 +111,14 @@ def main():
     })
     print("HTTP:", status)
     print(pretty(data))
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     # 6) Get profile without token (should be 401)
     print("\n[6] GET PROFILE WITHOUT TOKEN (expect 401): GET /profile")
     status, data = call("GET", "/profile")
     print("HTTP:", status)
     print(pretty(data))
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     # 7) Get profile with token (should succeed)
     print("\n[7] GET PROFILE WITH TOKEN (expect ok): GET /profile")
@@ -121,6 +127,7 @@ def main():
     })
     print("HTTP:", status)
     print(pretty(data))
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     # 8) Update profile (partial update)
     new_address = "200 Updated Road"
@@ -132,6 +139,7 @@ def main():
     })
     print("HTTP:", status)
     print(pretty(data))
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     # 9) Verify update by fetching profile again
     print("\n[9] VERIFY UPDATE (expect address changed): GET /profile")
@@ -140,6 +148,7 @@ def main():
     })
     print("HTTP:", status)
     print(pretty(data))
+    time.sleep(DELAY_BETWEEN_CALLS)
 
     print("\nDONE ✅ If steps [2], [4], [7], [8], [9] show status:'ok', the service works.")
 
