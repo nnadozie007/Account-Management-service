@@ -1,16 +1,12 @@
-# app.py
-# Account Management Microservice (REST API + JSON) using SQLite (no subscription needed)
-#
+
+# Account Management Microservice (REST API + JSON) using SQLite
+
 # Endpoints:
 #   POST  /register
 #   POST  /login
 #   GET   /profile        (requires Authorization: Bearer <token>)
 #   PATCH /profile        (requires Authorization: Bearer <token>)
 #   GET   /health
-#
-# Response format:
-#   Success: { "status": "ok", "data": { ... } }
-#   Error:   { "status": "error", "error": { "code": "...", "message": "..." } }
 
 import os
 import re
@@ -24,7 +20,7 @@ import jwt
 
 app = Flask(__name__)
 
-# Secrets / config
+# keys config
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev_secret_change_me")
 DB_PATH = os.environ.get("DATABASE_PATH", "users.db")
 
@@ -41,10 +37,8 @@ def json_ok(data, http_status=200):
 def json_error(code, message, http_status):
     return jsonify({"status": "error", "error": {"code": code, "message": message}}), http_status
 
+# SQLite connection helper method
 
-# -------------------------
-# SQLite connection helpers
-# -------------------------
 def get_db() -> sqlite3.Connection:
     """Get a per-request DB connection."""
     if "db" not in g:
@@ -82,9 +76,9 @@ def init_db():
         conn.close()
 init_db()
 
-# -------------------------
+
 # Auth helpers
-# -------------------------
+
 def get_bearer_token():
     auth = request.headers.get("Authorization", "")
     if auth.startswith("Bearer "):
@@ -129,9 +123,9 @@ def token_required(fn):
     return wrapper
 
 
-# -------------------------
+
 # Routes
-# -------------------------
+
 @app.get("/health")
 def health():
     return json_ok({"message": "Service is running"})
@@ -154,7 +148,7 @@ def register():
             "Enter a valid email (example: name@email.com).",
             400,
         )
-
+    #To be replaced by data verification services
     if len(password) < 8:
         return json_error("WEAK_PASSWORD", "Password must be at least 8 characters long.", 400)
 

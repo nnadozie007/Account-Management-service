@@ -1,11 +1,6 @@
-# test_file.py
+
 # Simple test program that demonstrates the Account Management Service works end-to-end.
-# It calls: /health -> /register -> duplicate /register -> /login -> bad /login
-#          -> /profile (no token) -> /profile (with token) -> PATCH /profile -> /profile again
-#
-# Requirements: pip install requests
-#
-# Deployed base URL:
+# Deployed base URL on render(choose render because i will like to further develop this microservice):
 BASE_URL = "https://account-management-service-1.onrender.com"
 
 import requests
